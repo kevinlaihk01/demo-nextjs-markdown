@@ -1,0 +1,12 @@
+name: Deploy demo-nextjs-markdown
+on:
+  push:
+    branches: [master]
+  
+jobs:
+  build:
+    runs-on: ubuntu-lateset
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the docker image
+        run: BUILD_TAG=$(date +%s) docker-compose build
