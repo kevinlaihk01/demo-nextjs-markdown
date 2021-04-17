@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the docker image
-        run: BUILD_TAG=$(date +%s) docker-compose build
+        run: BUILD_TAG=$GITHUB_SHA docker-compose build
