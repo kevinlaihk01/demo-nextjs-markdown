@@ -32,3 +32,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Reference
+- https://github.com/actions/starter-workflows
+- https://github.com/actions/starter-workflows/blob/fe49f6631698e7cd6ad2d94183791b61f9a59bfe/ci/google.yml
+- https://cloud.google.com/kubernetes-engine/docs/quickstart
+- https://docs.github.com/en/actions/guides/deploying-to-google-kubernetes-engine#configuring-a-service-account-and-storing-its-credentials
+- https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform
+- https://kustomize.io/
