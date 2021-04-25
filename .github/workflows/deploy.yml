@@ -72,6 +72,8 @@ jobs:
       run: |-
         ./kustomize edit set image asia.gcr.io/PROJECT_ID/IMAGE:TAG=${{ env.IMAGE }}/${{ env.IMAGE_TAG }}
         ./kustomize build . | kubectl apply -f -
+        cat ./deployment.yaml
+        cat ./service.yaml
         kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
         kubectl get services -o wide
 
