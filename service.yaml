@@ -29,7 +29,8 @@ metadata:
     networking.gke.io/load-balancer-type: "Internal"
 spec:
   selector:
-    deployment: demo-nextjs-markdown-deployment
+    # deployment: demo-nextjs-markdown-deployment
+    app: demo-nextjs-markdown
   type: LoadBalancer
   ports:
   - protocol: TCP
