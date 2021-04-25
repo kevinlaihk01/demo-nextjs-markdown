@@ -11,7 +11,8 @@ env:
   GKE_ZONE: asia-southeast1
   DEPLOYMENT_NAME: demo-nextjs-markdown-production
   # IMAGE: knkevinlai/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
-  IMAGE: demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
+  # IMAGE: demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
+  IMAGE: ${{ secrets.GKE_PROJECT }}/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
   IMAGE_TAG: $GITHUB_RUN_ID
 
 jobs:
@@ -46,7 +47,7 @@ jobs:
     - name: Build the docker image
       # run: BUILD_TAG=$GITHUB_RUN_ID docker-compose build
       # run: BUILD_TAG=$IMAGE_TAG docker-compose build
-      run: BUILD_TAG=${{ env.IMAGE_TAG }} docker-compose build
+      run: BUILD_IMAGE=${{ env.IMAGE }} BUILD_TAG=${{ env.IMAGE_TAG }} docker-compose build
     
     # Push the Docker image to Google Container Registry
     - name: Publish
@@ -54,5 +55,7 @@ jobs:
       #   docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
       # run: |-
       #   docker push "gcr.io/$PROJECT_ID/$IMAGE:$IMAGE_TAG"
+      # run: |-
+      #   docker push "gcr.io/$PROJECT_ID/${{ env.IMAGE }}:${{ env.IMAGE_TAG }}"
       run: |-
-        docker push "gcr.io/$PROJECT_ID/${{ env.IMAGE }}:${{ env.IMAGE_TAG }}"
+        docker push "asia.gcr.io/${{ env.IMAGE }}:${{ env.IMAGE_TAG }}"
