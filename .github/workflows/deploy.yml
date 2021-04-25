@@ -52,6 +52,7 @@ jobs:
     - name: Publish
       # run: |-
       #   docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+      # run: |-
+      #   docker push "gcr.io/$PROJECT_ID/$IMAGE:$IMAGE_TAG"
       run: |-
-        docker push "gcr.io/$PROJECT_ID/$IMAGE:$IMAGE_TAG"
-
+        docker push "gcr.io/$PROJECT_ID/${{ env.IMAGE }}:${{ env.IMAGE_TAG }}"
