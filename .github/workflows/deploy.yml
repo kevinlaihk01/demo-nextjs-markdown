@@ -8,7 +8,7 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: autopilot-cluster-1
   GKE_ZONE: asia-southeast1
-  DEPLOYMENT_NAME: demo-nextjs-markdown-production
+  DEPLOYMENT_NAME: demo-nextjs-markdown-deployment
   IMAGE: asia.gcr.io/${{ secrets.GKE_PROJECT }}/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
   IMAGE_TAG: $GITHUB_SHA
 
@@ -70,10 +70,11 @@ jobs:
       #   kubectl rollout status deployment/$DEPLOYMENT_NAME
       #   kubectl get services -o wide
       run: |-
-        ./kustomize edit set image asia.gcr.io/PROJECT_ID/IMAGE:TAG=${{ env.IMAGE }}/${{ env.IMAGE_TAG }}
+        ./kustomize edit set image asia.gcr.io/PROJECT_ID/IMAGE:TAG=${{ env.IMAGE }}:${{ env.IMAGE_TAG }}
+        ./kustomize build .
         ./kustomize build . | kubectl apply -f -
-        cat ./deployment.yaml
-        cat ./service.yaml
+        # cat ./deployment.yaml
+        # cat ./service.yaml
         kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
         kubectl get services -o wide
 

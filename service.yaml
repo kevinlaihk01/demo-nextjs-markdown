@@ -27,7 +27,7 @@ metadata:
   name: demo-nextjs-markdown-service
 spec:
   selector:
-    deployment: demo-nextjs-markdown
+    deployment: demo-nextjs-markdown-deployment
   type: LoadBalancer
   ports:
   - protocol: TCP
