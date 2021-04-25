@@ -13,7 +13,9 @@ env:
   # IMAGE: knkevinlai/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
   # IMAGE: demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
   IMAGE: ${{ secrets.GKE_PROJECT }}/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
-  IMAGE_TAG: $GITHUB_RUN_ID
+  # IMAGE_TAG: $GITHUB_RUN_ID
+  # IMAGE_TAG: ${{ env.GITHUB_RUN_ID }}
+  IMAGE_TAG: ${{ env.GITHUB_SHA }}
 
 jobs:
   setup-build-publish-deploy:
