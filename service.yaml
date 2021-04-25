@@ -25,6 +25,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: demo-nextjs-markdown-service
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
 spec:
   selector:
     deployment: demo-nextjs-markdown-deployment
