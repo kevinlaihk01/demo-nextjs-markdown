@@ -45,7 +45,8 @@ jobs:
 
     - name: Build the docker image
       # run: BUILD_TAG=$GITHUB_RUN_ID docker-compose build
-      run: BUILD_TAG=$IMAGE_TAG docker-compose build
+      # run: BUILD_TAG=$IMAGE_TAG docker-compose build
+      run: BUILD_TAG=${{ env.IMAGE_TAG }} docker-compose build
     
     # Push the Docker image to Google Container Registry
     - name: Publish
