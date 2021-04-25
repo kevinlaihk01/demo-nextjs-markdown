@@ -49,3 +49,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ### Domain and Cerificates
 - https://ithelp.ithome.com.tw/articles/10197751
 - https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs
+
+### CDN Cache
+- https://cloud.google.com/load-balancing/docs/custom-headers#variables
