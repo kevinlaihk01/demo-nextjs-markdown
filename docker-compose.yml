@@ -2,7 +2,8 @@ version: '3.8'
 services:
   demo-nextjs-markdown:
     # @NOTE - AVOID USING "latest" TAG IN K8S YML CONFIG - https://kubernetes.io/docs/concepts/containers/images/
-    image: knkevinlai/demo-nextjs-markdown:${BUILD_TAG:-latest}
+    # image: knkevinlai/demo-nextjs-markdown:${BUILD_TAG:-latest}
+    image: demo-nextjs-markdown:${BUILD_TAG:-latest}
     build:
       context: .
       dockerfile: Dockerfile
