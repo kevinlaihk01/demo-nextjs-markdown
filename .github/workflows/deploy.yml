@@ -12,7 +12,7 @@ env:
   DEPLOYMENT_NAME: demo-nextjs-markdown-production
   # IMAGE: knkevinlai/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
   # IMAGE: demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
-  IMAGE: ${{ secrets.GKE_PROJECT }}/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
+  IMAGE: asia.gcr.io/${{ secrets.GKE_PROJECT }}/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
   # IMAGE_TAG: $GITHUB_RUN_ID
   # IMAGE_TAG: ${{ env.GITHUB_RUN_ID }}
   # IMAGE_TAG: ${{ env.GITHUB_SHA }}
@@ -60,5 +60,7 @@ jobs:
       #   docker push "gcr.io/$PROJECT_ID/$IMAGE:$IMAGE_TAG"
       # run: |-
       #   docker push "gcr.io/$PROJECT_ID/${{ env.IMAGE }}:${{ env.IMAGE_TAG }}"
+      # run: |-
+      #   docker push "asia.gcr.io/${{ env.IMAGE }}:${{ env.IMAGE_TAG }}"
       run: |-
-        docker push "asia.gcr.io/${{ env.IMAGE }}:${{ env.IMAGE_TAG }}"
+        docker push "${{ env.IMAGE }}:${{ env.IMAGE_TAG }}"
