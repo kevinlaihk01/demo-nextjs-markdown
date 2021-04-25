@@ -1,12 +1,55 @@
+# https://github.com/actions/starter-workflows/blob/fe49f6631698e7cd6ad2d94183791b61f9a59bfe/ci/google.yml
 name: Deploy demo-nextjs-markdown
 on:
   push:
     branches: [master]
-  
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: autopilot-cluster-1	
+  GKE_ZONE: asia-southeast1-a
+  DEPLOYMENT_NAME: demo-nextjs-markdown-production
+  # IMAGE: knkevinlai/demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
+  IMAGE: demo-nextjs-markdown # TODO check if should "demo-nextjs-markdown" or "$PROJECT_ID/demo-nextjs-markdown"
+  IMAGE_TAG: $GITHUB_RUN_ID
+
 jobs:
-  build:
+  setup-build-publish-deploy:
+    name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
+    environment: production
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Build the docker image
-        run: BUILD_TAG=$GITHUB_RUN_ID docker-compose build
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Setup gcloud CLI
+    - uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        service_account_key: ${{ secrets.GKE_SA_KEY }}
+        # project_id: ${{ secrets.GKE_PROJECT }}
+        project_id: $PROJECT_ID
+
+    # Configure Docker to use the gcloud command-line tool as a credential
+    # helper for authentication
+    - run: |-
+        gcloud --quiet auth configure-docker
+
+    # Get the GKE credentials so we can deploy to the cluster
+    - uses: google-github-actions/get-gke-credentials@v0.2.1
+      with:
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_ZONE }}
+        credentials: ${{ secrets.GKE_SA_KEY }}
+
+    - name: Build the docker image
+      # run: BUILD_TAG=$GITHUB_RUN_ID docker-compose build
+      run: BUILD_TAG=$IMAGE_TAG docker-compose build
+    
+    # Push the Docker image to Google Container Registry
+    - name: Publish
+      # run: |-
+      #   docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+      run: |-
+        docker push "gcr.io/$PROJECT_ID/$IMAGE:$IMAGE_TAG"
+
