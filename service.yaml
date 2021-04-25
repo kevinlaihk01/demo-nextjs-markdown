@@ -1,0 +1,35 @@
+# # kubectl apply -f k8s-service.yaml
+# # CREATE BY KOMPOSE
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: demo-nextjs-markdown
+#   name: demo-nextjs-markdown
+# spec:
+#   type: NodePort
+#   ports:
+#   - name: 'nginx-http'
+#     # port: 3000
+#     # targetPort: 3000
+#     port: 3030
+#     targetPort: 3000
+#     # ACCESS BY http://${nodeIp}:30001
+#     # nodePort: 30001
+#   selector:
+#     app: demo-nextjs-markdown
+# status:
+#   loadBalancer: {}
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo-nextjs-markdown-service
+spec:
+  selector:
+    deployment: demo-nextjs-markdown
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8666
+    targetPort: 3000
