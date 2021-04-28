@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import '../styles/globals.css'
+import '../styles/globals.css';
 
 // TODO refine types
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 const App: FC<Props> = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />
-}
+  return <Component {...pageProps} />;
+};
 
-export default App
+export default App;
