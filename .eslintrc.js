@@ -1,6 +1,7 @@
 // TODO prettier
 module.exports = {
   "env": {
+    node: true,
     "browser": true,
     "es2021": true
   },
@@ -39,5 +40,13 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     // unicorn
     "unicorn/prevent-abbreviations": "off",
-  }
+  },
+  overrides: [
+    {
+      files: ['**/commitlint.config.js'],
+      rules: {
+        'unicorn/prefer-module': 'off',
+      },
+    },
+  ],
 };
