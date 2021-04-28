@@ -1,4 +1,4 @@
-// TODO enforce code styles by extends and rules
+// TODO prettier
 module.exports = {
   "env": {
     "browser": true,
@@ -7,7 +7,12 @@ module.exports = {
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:unicorn/recommended",
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -17,6 +22,11 @@ module.exports = {
     "ecmaVersion": 12,
     "sourceType": "module"
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   "plugins": [
     "react",
     "@typescript-eslint"
@@ -25,6 +35,8 @@ module.exports = {
     "react/prop-types": ["error", { skipUndeclared: true }],
     // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    // unicorn
+    "unicorn/prevent-abbreviations": "off",
   }
 };
