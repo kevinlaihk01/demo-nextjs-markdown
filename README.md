@@ -33,22 +33,32 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
 ## Reference
+
 ### Google Cloud GKE
+
 - https://cloud.google.com/kubernetes-engine/docs/quickstart
 - https://cloud.google.com/kubernetes-engine/docs/tutorials/authenticating-to-cloud-platform
 - https://kustomize.io/
 - https://github.com/kubernetes-sigs/kustomize
+
 ### Github Actions
+
 - https://github.com/actions/starter-workflows
 - https://github.com/actions/starter-workflows/blob/fe49f6631698e7cd6ad2d94183791b61f9a59bfe/ci/google.yml
 - https://docs.github.com/en/actions/guides/deploying-to-google-kubernetes-engine#configuring-a-service-account-and-storing-its-credentials
 - https://docs.github.com/en/actions/reference/environment-variables
 
 ### Domain and Cerificates
+
 - https://ithelp.ithome.com.tw/articles/10197751
 - https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs
 
+#### Redirect
+
+- [Setting up an HTTP-to-HTTPS redirect for HTTP(S) Load Balancing](https://cloud.google.com/load-balancing/docs/https/setting-up-http-https-redirect)
+- [HTTP to HTTPS redirects](https://cloud.google.com/kubernetes-engine/docs/how-to/ingress-features#https_redirect)
+
 ### CDN Cache
+
 - https://cloud.google.com/load-balancing/docs/custom-headers#variables
