@@ -1,26 +1,3 @@
-# apiVersion: apps/v1
-# kind: Deployment
-# metadata:
-#   name: nginx
-# spec:
-#   replicas: 3
-#   selector:
-#     matchLabels:
-#       app: nginx
-#   template:
-#     metadata:
-#       labels:
-#         app: nginx
-#     spec:
-#       containers:
-#       - name: nginx
-#         image: nginx:1.7.9
-#         ports:
-#         - containerPort: 80
-
-
-# kubectl apply -f k8s-deployment.yaml
-# CREATE BY KOMPOSE
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -39,33 +16,23 @@ spec:
         app: demo-nextjs-markdown
     spec:
       containers:
-      - name: demo-nextjs-markdown
-        image: asia.gcr.io/PROJECT_ID/IMAGE:TAG
-        # COMMENT TO NOT EXPOSING THE PORT OUTSIDE THE POD
-        ports:
-        - containerPort: 3000
-        resources: {}
-        # command:
-        #   - yarn
-        #   - start
-        # command: ['yarn', 'start']
-        command:
-          [
-            "pm2-runtime",
-            "start",
-            "yarn",
-            "--interpreter",
-            "sh",
-            "--name",
-            "demo-nextjs-markdown",
-            "--",
-            "start"
-          ]
-      # - name: demo-nextjs-nginx
-      #   image: <IMAGE_REGISTRY>/knkevinlai/demo-nextjs-nginx:<BUILD_TAG>
-      #   ports:
-      #   - containerPort: 80
-      # imagePullSecrets:
-      #   - name: local-registry-pull-secret
+        - name: demo-nextjs-markdown
+          image: asia.gcr.io/PROJECT_ID/IMAGE:TAG
+          # COMMENT TO NOT EXPOSING THE PORT OUTSIDE THE POD
+          ports:
+            - containerPort: 3000
+          resources: {}
+          command:
+            [
+              'pm2-runtime',
+              'start',
+              'yarn',
+              '--interpreter',
+              'sh',
+              '--name',
+              'demo-nextjs-markdown',
+              '--',
+              'start',
+            ]
       restartPolicy: Always
 status: {}
