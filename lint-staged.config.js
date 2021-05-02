@@ -8,5 +8,4 @@ module.exports = {
     'eslint --fix',
   ],
   'yarn.lock': ['yarn-deduplicate'],
-  '*.png': ['optipng'],
 };
